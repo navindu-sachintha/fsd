@@ -1,0 +1,8 @@
+services:
+  frontend:
+    image: nginx:alpine
+    restart: always
+    volumes:
+      - ./app-frontend:/usr/share/nginx/html:rw
+    ports:
+      - "81:80"
