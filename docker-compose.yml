@@ -3,6 +3,15 @@ services:
     image: nginx:alpine
     restart: always
     volumes:
-      - ./app-frontend:/usr/share/nginx/html:rw
+      - ./app-frontend:/usr/share/nginx/html:ro
     ports:
       - "81:80"
+  
+  backend:
+    image: node:18-alpine
+    restart: always
+    volumes:
+      - ./app-backend:/usr/src/app
+    ports:
+      - "82:3000"
+    command: sh -c "chmod +x /usr/src/app/startup.sh && /usr/src/app/startup.sh"
